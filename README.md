@@ -11,11 +11,11 @@ Gene fusions play a major role in tumorigenesis, so it is crucial that Treehouse
 
 ##### Image located on hub.docker.com
 
-REPOSITORY: jpfeil/star-fusion
+REPOSITORY: jpfeil/treehouse-fusion
 
 TAG: 0.1.0
 
-IMAGE ID: bb0c8be35574
+IMAGE ID: 101d0774d885 
 
 
 ##### Input files
