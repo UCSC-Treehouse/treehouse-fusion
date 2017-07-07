@@ -93,23 +93,24 @@ def pipeline(args):
                '--out_prefix', 'FusionInspector',
                '--prep_for_IGV',
                '--include_Trinity',
-               '--CPU', args.CPU,
-               '--cleanup']
+               '--CPU', args.CPU]
 
         print('Beginning FusionInspector Run', file=sys.stderr)
         subprocess.check_call(cmd)
 
-    os.mkdir('fusion')
+    final_dir = os.path.join('/data', args.output_dir, 'fusion-output')
+    if not os.path.exists(final_dir):
+        os.mkdir(final_dir)
+
     with open('/home/save-list') as f:
         for line in f:
             line = line.strip()
 
-            # Check that output file exists
-            if not os.path.exists(line):
-                raise ValueError('Expected file %s not found' % line)
+            path = os.path.join('/data', args.output_dir, line)
 
-            else:
-                shutil.copy(line, os.path.join('fusion', os.path.basename(line)))
+            # Check that output file exists
+            if os.path.exists(path):
+                shutil.copyfile(path, os.path.join(final_dir, os.path.basename(line)))
 
 
 def main():
@@ -117,13 +118,13 @@ def main():
     Wraps STAR-Fusion program and filters output using FusionInspector.
     """
     parser = argparse.ArgumentParser(description=main.__doc__)
-    parser.add_argument('--left_fq', 
-                        dest='r1', 
-                        required=True, 
+    parser.add_argument('--left_fq',
+                        dest='r1',
+                        required=True,
                         help='Fastq 1')
-    parser.add_argument('--right_fq', 
-                        dest='r2', 
-                        required=True, 
+    parser.add_argument('--right_fq',
+                        dest='r2',
+                        required=True,
                         help='Fastq 2')
     parser.add_argument('--output_dir',
                         required=True,
