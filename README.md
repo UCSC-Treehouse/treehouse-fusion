@@ -7,6 +7,8 @@ STAR-Fusion for Treehouse RNA-seq analysis
 
 Gene fusions play a major role in tumorigenesis, so it is crucial that Treehouse has a pipeline for detecting them. We have built a docker container that runs [STAR-Fusion](https://github.com/STAR-Fusion/STAR-Fusion/wiki) and filters the output against a list of known cancer fusion genes. There is also an option to run additional filters and generate *de novo* assembled fusion transcripts using the [FusionInspector](https://github.com/FusionInspector/FusionInspector/wiki/Home/5fb0116687e9f80a7e926e55657b46392b781f64) program.
 
+This version is used in the Treeshop pipeline.
+
 ### Docker and usage
 
 ##### Image located on hub.docker.com
