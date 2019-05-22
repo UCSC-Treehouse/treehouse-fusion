@@ -20,3 +20,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Removed
 - Wrapper script for updating file ownership
+
+## [0.1.1] - 2019-05-22
+### Added
+- Added more genes to gene-list
+
+### Changed
+- Modified gene-list filter
+Selects fusions where either gene is in gene-list
+
+### Removed
+- Wrapper script for updating file ownership

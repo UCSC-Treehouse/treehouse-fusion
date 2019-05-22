@@ -58,11 +58,10 @@ def pipeline(args):
             writer.writerow(header)
 
             for line in reader:
-                save = True
+                save = False
                 gene1, gene2 = line[0].split('--')
-                if gene1 not in genelist or gene2 not in genelist:
-                    print('Fusion %s--%s not in genelist' % (gene1, gene2), file=sys.stderr)
-                    save = False
+                if gene1 in genelist or gene2 in genelist:
+                    save = True
 
                 # If fusion call passed filter, then write it to the output
                 if save:

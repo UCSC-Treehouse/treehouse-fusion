@@ -10,20 +10,12 @@ MAINTAINER Jacob Pfeil, jpfeil@ucsc.edu
 RUN apt-get update --fix-missing
 
 RUN apt-get install -y python zlib1g-dev gzip perl libdb-dev dpkg build-essential \
-                       make unzip libtbb-dev libncurses-dev apt-utils
+                       make unzip libtbb-dev libncurses-dev apt-utils openjdk-8-jdk wget
 
 # Perl libraries
 RUN cpan App::cpanminus && cpanm Set::IntervalTree && cpanm DB_File && cpanm URI
 
 WORKDIR /opt
-
-# java
-RUN echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main" | tee /etc/apt/sources.list.d/webupd8team-java.list && \
-    echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main" | tee -a /etc/apt/sources.list.d/webupd8team-java.list && \
-    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886 && \
-    apt-get update && \
-    echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections && \
-    apt-get install -y oracle-java8-installer
 
 # htslib 1.3
 RUN wget -qO- https://github.com/samtools/htslib/releases/download/1.3/htslib-1.3.tar.bz2 | tar xj && \
@@ -62,7 +54,7 @@ ENV PATH "/opt/bowtie2-2.3.1:/opt/trinityrnaseq-Trinity-v2.4.0:/opt/FusionInspec
 
 # Add wrapper scripts
 COPY star_fusion_pipeline.py /opt/star_fusion_pipeline.py
-COPY gene-list /home/gene-list
+COPY gene-list-V2 /home/gene-list
 COPY save-list /home/save-list
 COPY delete-list /home/delete-list
 
