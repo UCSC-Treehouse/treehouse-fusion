@@ -15,9 +15,9 @@ This version is used in the Treeshop pipeline.
 
 REPOSITORY: jpfeil/treehouse-fusion
 
-TAG: 0.1.0
+TAG: 0.1.1
 
-IMAGE ID: 101d0774d885 
+DIGEST: sha256:9e5ce87104287205f3ece4773296b219c71974d48f1e0b92de2fc629168479a2
 
 
 ##### Input files
