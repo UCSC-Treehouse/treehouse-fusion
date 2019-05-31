@@ -17,7 +17,7 @@ REPOSITORY: jpfeil/treehouse-fusion
 
 TAG: 0.1.1
 
-DIGEST: sha256:9e5ce87104287205f3ece4773296b219c71974d48f1e0b92de2fc629168479a2
+DIGEST: sha256:633adf491aac8c216df2855e47a2ffd55c9af6c5f646ae0944a4273f33caffe0
 
 
 ##### Input files
