@@ -6,3 +6,4 @@ FusionInspector/FusionInspector.spanning_reads.bam
 Log.final.out
 star-fusion.fusion_candidates.final.in_genelist.abridged
 star-fusion.fusion_candidates.final.abridged.FFPM
+FusionInspector.ERROR

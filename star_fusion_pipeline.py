@@ -70,6 +70,8 @@ def pipeline(args):
         # Update results file
         results = out_f.name
 
+    final_dir = os.path.join('/data', args.output_dir, 'fusion-output')
+
     if args.run_fusion_inspector:
         # Check input file for at least one fusion prediction
         with open(results, 'r') as f:
@@ -95,9 +97,16 @@ def pipeline(args):
                '--CPU', args.CPU]
 
         print('Beginning FusionInspector Run', file=sys.stderr)
-        subprocess.check_call(cmd)
+        try:
+            p = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+            stdout, stderr = p.communicate()
 
-    final_dir = os.path.join('/data', args.output_dir, 'fusion-output')
+        except Exception as e:
+            pth = os.path.join(final_dir, 'FusionInspector.ERROR')
+            with open(pth, 'w') as f:
+                f.write(stderr)
+                sys.exit()
+
     if not os.path.exists(final_dir):
         os.mkdir(final_dir)
 
@@ -107,7 +116,7 @@ def pipeline(args):
 
             path = os.path.join('/data', args.output_dir, line)
 
-            # Check that output file exists
+            # Check that output files exists
             if os.path.exists(path):
                 shutil.copyfile(path, os.path.join(final_dir, os.path.basename(line)))
 
